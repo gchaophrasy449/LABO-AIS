@@ -1,21 +1,21 @@
-name: CI - Vérification HTML
+name: CD - Déploiement sur GitHub Pages
 
 on:
  push:
   branches: [ "main" ]
- pull_request:
-  branches: [ "main" ]
-
+permissions:
+contents: read
+pages: write
+id-token: write
 jobs:
-  test-html:
-   runs-on: ubuntu-latest
-   steps:
-    - name: Récupération du code
-      uses: actions/checkout@v3
-    
-    - name: Vérification syntaxe HTML
-      uses: Cyb3r-Jak3/html5validator-action@v7.2.0
-      with:
-       github_token: ${{ secrets.GITHUB_TOKEN }}
-       publish_dir: .
+ Deploiement:
+  runs-on: ubuntu-latest
+  steps:
+   - name: Récupération du code
+   uses: actions/checkout@v3
 
+   - name: Déploiement vers GitHub Pages
+   uses: peaceiris/actions-gh-pages@v3
+   with:
+    github_token: ${{ secrets.GITHUB_TOKEN }
+    publish_dir: .
