@@ -3,6 +3,10 @@ name: CD - Déploiement sur GitHub Pages
 on:
  push:
   branches: [ "main" ]
+permissions:
+contents: read
+pages: write
+id-token: write
 
 jobs:
  Deploiement:
